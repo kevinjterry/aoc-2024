@@ -3,11 +3,18 @@ def load_data(filename):
     with open(filename, "r") as f:
         lines = [line.strip() for line in f.readlines()]
 
-    safe_list = [line for line in lines if test_if_safe(line)]
-    unsafe_list = [line for line in lines if not test_if_safe(line)]
+    unsafe_list = []
+    safe_list = []
+
+    for line in lines:
+        is_safe = test_if_safe(line)
+        if is_safe:
+            safe_list.append(line)
+        else:
+            unsafe_list.append(line)
 
     print(f"Safe: {len(safe_list)}")
-    print(f"Unsafe: {len(unsafe_list)}")
+    print(f"Not Safe: {len(unsafe_list)}")
 
     return safe_list, unsafe_list
 
