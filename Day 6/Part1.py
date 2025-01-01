@@ -31,14 +31,15 @@ def is_in_bounds(i, j, grid_width, grid_height):
     return True
 
 def change_direction(dir):
-    if dir == "up":
-        return "right"
-    elif dir == "right":
-        return "down"
-    elif dir == "down":
-        return "left"
-    elif dir == "left":
-        return "up"
+    if not dir:
+        return None
+    directions = {
+        "up": "right",
+        "right": "down",
+        "down": "left",
+        "left": "up"
+    }
+    return directions.get(dir, None)
 
 def main():
     lines = load_data("./Day 6/input_test.txt")
